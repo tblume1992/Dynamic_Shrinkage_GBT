@@ -10,12 +10,10 @@ import numpy as np
 import math
 #Are we doing adaptive!?
 Adaptive = False
-
+lr = 1 #Setting the Learning rate, should be set to 1 when doing dynamic shrinkage
 #Data Prep
-data = pd.read_csv('C:\\Users\\t-blu\\Downloads\\dynamic gradient boosting - Sheet1 (1).csv',  delimiter=',')
-data = data.dropna()
-train = pd.read_csv('C:\\Users\\t-blu\\Downloads\\dynamic gradient boosting - Train (1).csv',  delimiter=',')
-test = pd.read_csv('C:\\Users\\t-blu\\Downloads\\dynamic gradient boosting - Test (1).csv',  delimiter=',')
+train = pd.read_csv(FILEPATH,  delimiter=',')
+test = pd.read_csv(FILEPATH,  delimiter=',')
 y = train['y']
 x = train
 x.drop('y', axis=1, inplace=True)
@@ -34,7 +32,6 @@ testme = 0
 rmse_list_adap = [] #Creating the rmse data set
 sumei = 0
 learning_rates = [] #Creating the learning rates data set
-lr = 1 #Setting the Learning rate, should be set to 1 when doing the dynamic shrinkage
 for i in range(1000): # loop will make n trees (n_estimators). 
     tree = DecisionTreeRegressor(max_depth = 2) 
     tree.fit(xi,yi)
